@@ -1,0 +1,9 @@
+######################################
+Grupo 1462
+Pareja 1
+Fundamentos de Aprendizaje Automático
+Práctica 0
+######################################
+
+Eva Gutiérrez Vanmoen
+Gloria del Valle Cano

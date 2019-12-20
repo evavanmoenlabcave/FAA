@@ -1,0 +1,95 @@
+P3 - Algoritmos genéticos
+_________________________
+
+Dataset solo con nominales
+
+Algoritmo genético en un conjunto de reglas -> se puede aplicar a casi todas las fases de la minería.
+
+Tres pasos:
+	1) Representación del problema
+	2) Definición del fitness
+	3) Operadores genéticos
+		- Cruce
+		- Mutación
+
+La idea es simular aspectos de la biología para simular tareas.
+Se representa como cadenas o numeros binarios.
+Acaban siendo sucesiones.
+
+* ¿Cómo representar el dominio del problema?
+
+* Cuando tenemos un individuo en la población, valoramos cuán de bueno es -> fitness
+	
+	Una vez que tenemos la poblacion inicial creada (aleatoria completamente) la evaluamos inicialmente calculando el fitness de cada uno (lo bien o mal que funciona el individuo) ¿Cuantos ejemplos clasifica bien? = Porcentaje de aciertos (los de train)
+
+* ¿Cómo lo conducimos al espacio de soluciones? A través de los operadores genéticos.
+
+100 épocas: al final el algoritmo converge.
+
+Buscadores en espacios globales. Los genéticos como parten de poblaciones aleatorias pueden pinchar en espacios de soluciones globales.
+
+Es bastante eficaz, pero no es la única.
+
+¿Cómo representamos la regla con una cadena binaria?
+Si tenemos N atributos cada uno de los atributos encaja en las condiciones de la regla:
+Derivamos el número de valores del atributo:
+
+Atr1 .......... AtrN
+ =   ..........  =
+Val1 .......... ValN
+
+
+Permitir que en Val1 haya mas de un 1: 0100100 : 1234567
+
+001 XXX XXX ... (tic tac toe) (b o x)
+
+if atr1 = x and atr2 = o ... and atrN = ? then + else -
+
+
+- Dos aproximaciones:
+	* Michigan : un solo individuo es un conjunto de reglas. -> Es la que vamos a implementar.
+	* Pittsburg : sólo codifica una regla, por tanto la sol es todos los individuos de la poblacion.
+
+
+Pueden tener una regla con longitud fija, pero puede haber mas de una regla fija. Puede tener una, o N reglas.
+Pero todas las reglas tienen la misma longitud.
+Los trozos son de longitud fija, pero el numero de reglas es variable. Lo que buscamos es genralizar el individuo lo maximo posible en el minimo numero de reglas posibles.
+
+Random(1, N), siendo N el máximo numero individuos considerado a priori
+
+Si no hay reglas que encajen, devolver la clasificacion a priori
+
+Si no, la que más frecuencia tenga
+
+Si no devuelves bien el fitness, normalmente no converge
+
+
+ - Cruce -
+ Más habitual: cruce en un punto
+ Teniendo dos cromosomas binarios: swap por la mitad
+ Puedo cruzar dentro de una regla (ver variantes)
+
+
+ - Mutacion -
+ Ir recorriendo la cadena binaria y con una determinada probabilidad mutar o no mutar, o sustituir por otra etc 
+ (ver variantes)
+
+
+ ¿Cómo encajamos el algoritmo dentro de la app nuestra?
+	 - Entrena: crear poblacion inicial y entrenar hasta encontrar el individuo optimo y llamar a clasifica, pero ahora con los datos de test.
+	 - Clasifica: test = calcular fitness, pero con datos de test
+
+Inconveniente: son muy lentos y costosos computacionalmente hablando
+
+100 its o asi y un numero var de individuos
+
+
+Cuando pasas de una poblacion a la siguiente, hay que ver si aplicas a todos de la siguiente o solo a unos individuos determinados, por ej, cruce 80% y mutacion 10% y los que pasan a lo mejor son un 5%, lo que se llama el elitismo.
+Pasan unos cuandos definitivos, para que no se pierda, porque puede haber alguno que no sea bueno pero se se mantenga, que es mejor que que se pierda.
+
+- Seleccion proporcional: seleccion que mejor genetica tiene pero dejar abierta la puerta a los que no son tan aptos = ruleta rusa
+- Otro que tambien se utiliza es el torneo: se eligen unos k (a veces aleatorio) y se miran a ver cuales tienen mejor fitness
+
+Se cuenta porque siempre hay mucho debate en como se genera la poblacion i+1
+
+Incluso hay algoritmos que expanden y contraen el tamaño de la siguiente poblacion, pero aqui eso no lo vamos a ver. 

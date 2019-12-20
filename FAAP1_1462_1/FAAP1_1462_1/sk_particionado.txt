@@ -1,0 +1,4 @@
+MSE de NB usando VSimple con laPlace: 0.3649080000000001con varianza: 0.000798455536000001
+MSE de NB usando VCruzada con laPlace: 0.361con varianza: 0.0006250000000000011
+MSE de NB usando VSimple sin laPlace: 0.364556con varianza: 0.0007986188640000007
+MSE de NB usando VCruzada sin laPlace: 0.362con varianza: 0.000576000000000001

@@ -1,0 +1,16 @@
+######################################
+Grupo 1462
+Pareja 1
+Fundamentos de Aprendizaje Automático
+Práctica 1
+######################################
+
+Eva Gutiérrez Vanmoen
+Gloria del Valle Cano
+
+
+
+_________________
+Análisis ROC incompleto, pero implementado
+Error en obtención de datos de german, pero bien obtenidos en MainDatos.py
+_________________
